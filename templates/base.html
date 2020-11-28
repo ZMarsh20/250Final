@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="/static/css.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/add">Add</a></li>
+            <li><a href="/read">Read</a></li>
+            <li><a href="/sign_in">{{login}}</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}
+    {%endblock%}
+</body>
+</html>

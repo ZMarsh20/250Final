@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Sign In{%endblock%}
+
+{% block content %}
+    <form action="/sign_in" method="post">
+        <label id="user" for="username">Username: </label>
+        <input id="username" type="text" name="username" required oninput="normal()">
+        <label id="pass" for="username">Password: </label>
+        <input id="password" type="password" name="password" required oninput="normal()">
+        <input id="submit" type="submit">
+    </form>
+    <button id="signup" onclick="signup()">Sign Up? (it's free)</button>
+
+    <form id="signupform" action="/sign_in" method="post">
+        <label id="newuser" for="username">Username: </label>
+        <input id="newusername" type="text" name="newusername" required oninput="normal()">
+        <label id="newpass" for="username">Password: </label>
+        <input id="newpassword" type="password" name="newpassword" required  oninput="normal()">
+        <label id="newpass2" for="username">Confirm Password: </label>
+        <input id="newpassword2" type="password" required oninput="normal()">
+        <label id="lname" for="username">Put down the name you would like us to use for you: </label>
+        <input id="name" name="name" type="text" required oninput="normal()">
+        <input id="ok" type="text" required style="display: none;">
+    </form>
+    <button id="submit2" onclick="check()">Submit new user</button>
+    <button id="login" onclick="login()">Already a user?</button>
+
+
+    <script src="/static/login.js"></script>
+    {% if wasSignUp %}
+        <script>signup()</script>
+        {% if wrong %}
+            <script>usernameTaken()</script>
+        {%endif%}
+    {%else%}
+        {% if wrong %}
+            <script>tryAgain()</script>
+        {%endif%}
+    {%endif%}
+{%endblock%}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Update list{%endblock%}
+
+{% block content %}
+    <h1>Fixing an issue, huh?</h1>
+    <form action="/update/{{i}}" method="post">
+        <label id="lname" for="name">Company Name: </label><br>
+        <input id="name" type="text" name="name" maxlength="40" value="{{club.brand}}"><br>
+        <label id="ltype" for="type">Club Type: </label><br>
+        <select id="type" name="type" onchange="putter()">
+            {% for type in types %}
+                <option {%if club.type==type %} selected="selected" {%endif%} value="{{type}}">{{type}}</option>
+            {%endfor%}
+        </select>
+        <label id="ldegree" for="degree">Club Degree: </label>
+        <input id="degree" type="number" step="0.5" min="0" max="85" name="degree" value="{{club.degree}}">
+        <p id="lshaft">Shaft type: </p>
+        <div id="shaft">
+            <label id="lgraphite" for="graphite">Graphite </label>
+            <input id="graphite" type="radio" name="shaft" value="Graphite"
+            {%if club.shaft=="Graphite" %} checked {%endif%} >
+            <label id="lsteel" for="steel">or Steel </label>
+            <input id="steel" type="radio" name="shaft" value="Steel"
+            {%if club.shaft=="Steel" %} checked {%endif%} >
+        </div><br>
+        <label id="lflex" for="flex">Shaft Flex: </label>
+        <select id="flex" name="flex" selected="{{club.flex}}">
+                <option {%if club.flex=="Other" %} selected="selected" {%endif%} value="Other">Other</option>
+                <option {%if club.flex=="Ladies" %} selected="selected"d {%endif%} value="Ladies">Ladies</option>
+                <option {%if club.flex=="Regular" %} selected="selected" {%endif%} value="Regular">Regular</option>
+                <option {%if club.flex=="Stiff" %} selected="selected" {%endif%} value="Stiff">Stiff</option>
+                <option {%if club.flex=="Extra Stiff" %} selected="selected" {%endif%} value="Extra Stiff">Extra Stiff</option>
+        </select>
+        <label id="lyards" for="yards">Average club distance (yds): </label>
+        <input id="yards" type="number" step="1" min="0" max="500" name="yards" value="{{club.yards}}">
+        <label id="lextra" for="extra">Any additional info: </label><br>
+        <textarea id="extra" name="extra" cols="60" rows="10" maxlength="1024"></textarea><br>
+        <input id="submit" type="submit">
+    </form>
+    <script>
+        document.getElementById("extra").value = "{{club.extra}}";
+    </script>
+    <script src="/static/update.js"></script>
+{%endblock%}

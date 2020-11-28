@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}View Club{%endblock%}
+
+{% block content %}
+    <h1>Club: </h1>
+    <p>A <span style="red">{{club.brand}} {{club.type}}</span>{% if club.type!="Putter" %} set at <span style="red">{{club.degree}}</span>°{%endif%}.
+        This club has a{% if club.type!="Putter" %}(n) <span style="red">{{club.flex}}</span> flexed{%endif%} <span style="red">{{club.shaft}}</span> shaft
+        {% if club.type!="Putter" %}that YOU can hit around <span style="red">{{club.yards}}</span> yards{%endif%}.</p><br>
+    {% if club.extra|length > 0 %}
+        <p>{{name}} said: {{club.extra}}</p>
+    {%endif%}
+{%endblock%}

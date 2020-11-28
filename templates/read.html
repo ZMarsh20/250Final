@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Data{%endblock%}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Type of club</th>
+            <th>Shaft Type</th>
+            <th>Shaft Flex</th>
+            <th>Degree of club</th>
+            <th>Average Distance (yds)</th>
+        </tr>
+        {% for club in clubs %}
+            <tr>
+                <td onclick="view({{club.id}})"> {{club.brand}} </td>
+                <td onclick="view({{club.id}})"> {{club.type}} </td>
+                <td onclick="view({{club.id}})"> {{club.shaft}} </td>
+                <td onclick="view({{club.id}})"> {{club.flex}} </td>
+                <td onclick="view({{club.id}})"> {{club.degree}} </td>
+                <td onclick="view({{club.id}})"> {{club.yards}} </td>
+                <td><a href="\update\{{club.id}}">Update</a></td>
+                <td><a href="\delete\{{club.id}}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="/static/read.js"></script>
+{%endblock%}

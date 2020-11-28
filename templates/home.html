@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Home{%endblock%}
+
+{% block content %}
+    <h1>Welcome to this website!</h1>
+    <br>
+    <h4>Start <span><a href="/add" style="text-decoration: none; color: red;">Add</a></span>ing to your bag!</h4>
+    <br>
+    {% if login == "Sign In" %}
+        <h4><span><a href="/sign_in" style="text-decoration: none; color: red;">{{login}}</a></span> to save your bag for the future</h4>
+    {% else %}
+        <h4><span><a href="/sign_in" style="text-decoration: none; color: red;">{{login}}</a></span> and we will have your bag next time you sign in</h4>
+    {% endif %}
+{%endblock%}

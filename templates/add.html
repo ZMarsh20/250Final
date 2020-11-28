@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Add to list{%endblock%}
+
+{% block content %}
+    <h1>Add golf club to your bag!</h1>
+    <form action="/read" method="post">
+        <label id="lname" for="name">Company Name: </label><br>
+        <input id="name" type="text" name="name" maxlength="40" oninput="one()" required>
+        <label id="ltype" for="type">Club Type: </label>
+        <select id="type" name="type" onchange="two()" required>
+            {% for type in types %}
+                <option value="{{type}}">{{type}}</option>
+            {%endfor%}
+        </select>
+        <label id="ldegree" for="degree">Club Degree: </label>
+        <input id="degree" type="number" step="0.5" min="0" max="85" name="degree" required>
+        <p id="lshaft">Shaft type: </p>
+        <div id="shaft" required>
+            <label id="lgraphite" for="graphite">Graphite </label>
+            <input id="graphite" type="radio" name="shaft" onchange="three()" value="Graphite">
+            <label id="lsteel" for="steel">or Steel </label>
+            <input id="steel" type="radio" name="shaft" onchange="three()" value="Steel">
+        </div>
+        <label id="lflex" for="flex">Shaft Flex: </label>
+        <select id="flex" name="flex" onchange="four()" required>
+                <option value="Other">Other</option>
+                <option value="Ladies">Ladies</option>
+                <option value="Regular">Regular</option>
+                <option value="Stiff">Stiff</option>
+                <option value="Extra Stiff">Extra Stiff</option>
+        </select>
+        <label id="lyards" for="yards">Average club distance (yds): </label>
+        <input id="yards" type="number" step="1" min="0" max="500" name="yards" oninput="five()" required>
+        <label id="lextra" for="extra">Any additional info: </label>
+        <textarea id="extra" name="extra" cols="60" rows="10" maxlength="1024"></textarea>
+        <input id="submit" type="submit">
+    </form>
+    <script src="/static/add.js"></script>
+{%endblock%}
