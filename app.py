@@ -1,3 +1,5 @@
+import operator
+
 from flask import Flask, render_template, request, url_for, redirect, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, logout_user, current_user, login_required
@@ -138,11 +140,14 @@ def delete(i):
         db.session.delete(club)
         db.session.commit()
     else:
+        for j in range(len(noUserClubs)-1, int(i), -1):
+            noUserClubs[j].id = j-1
         noUserClubs.remove(noUserClubs[int(i)])
     return redirect(url_for('read'))
 
 @app.route('/read', methods=['GET','POST'])
 def read():
+    fourteen = False
     Login = "Sign In"
     if current_user.is_authenticated:
         Login = "Sign Out"
@@ -174,7 +179,9 @@ def read():
             club.id = len(noUserClubs)
             noUserClubs.append(club)
         clubs = noUserClubs
-    return render_template('read.html', clubs=clubs, login=Login)
+    if len(clubs) > 14:
+        fourteen = True
+    return render_template('read.html', clubs=sorted(clubs, key=operator.attrgetter('yards'), reverse=True), login=Login, fourteen=fourteen)
 
 @app.errorhandler(404)
 def error(err):

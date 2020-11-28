@@ -1,7 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Data{%endblock%}
+{% block title %}List of Clubs{%endblock%}
 
 {% block content %}
+    {% if fourteen %}
+        <h1 style="color: red; font-family: impact;">You have more than 14 clubs in your bag. This can cause strokes per hole in a tournament!</h1>
+    {%endif%}
     <table>
         <tr>
             <th>Company</th>
@@ -12,13 +15,13 @@
             <th>Average Distance (yds)</th>
         </tr>
         {% for club in clubs %}
-            <tr>
-                <td onclick="view({{club.id}})"> {{club.brand}} </td>
-                <td onclick="view({{club.id}})"> {{club.type}} </td>
-                <td onclick="view({{club.id}})"> {{club.shaft}} </td>
-                <td onclick="view({{club.id}})"> {{club.flex}} </td>
-                <td onclick="view({{club.id}})"> {{club.degree}} </td>
-                <td onclick="view({{club.id}})"> {{club.yards}} </td>
+            <tr id="{{club.id}}" onclick="view(this)">
+                <td> {{club.brand}} </td>
+                <td> {{club.type}} </td>
+                <td> {{club.shaft}} </td>
+                <td> {{club.flex}} </td>
+                <td> {{club.degree}} </td>
+                <td> {{club.yards}} </td>
                 <td><a href="\update\{{club.id}}">Update</a></td>
                 <td><a href="\delete\{{club.id}}">Delete</a></td>
             </tr>

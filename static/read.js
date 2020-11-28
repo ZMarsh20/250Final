@@ -1,3 +1,3 @@
- function view(id) {
-    location.assign("\\view\\" + id);
+ function view(tr) {
+    location.assign("\\view\\" + tr.id);
  }
